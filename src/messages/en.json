@@ -164,5 +164,22 @@
       "acknowledge": "Acknowledge",
       "resolve": "Resolve"
     }
+  },
+  "analytics": {
+    "title": "Analytics",
+    "description": "Performance metrics and insights",
+    "filters": "Date Range",
+    "filterStartDate": "Start Date",
+    "filterEndDate": "End Date",
+    "filterServiceType": "Service Type",
+    "tabDelay": "Delay Analysis",
+    "tabTurnaround": "Flight Turnaround",
+    "tabPerformance": "Unit Performance",
+    "delayTitle": "Average Delays by Service Type",
+    "turnaroundTitle": "Flight Turnaround Summary",
+    "performanceTitle": "Unit Performance Metrics",
+    "completion": "Completion Rate",
+    "avgDelay": "Avg Start Delay",
+    "avgDuration": "Avg Duration"
   }
 }

@@ -164,5 +164,22 @@
       "acknowledge": "الموافقة",
       "resolve": "حل"
     }
+  },
+  "analytics": {
+    "title": "التحليلات",
+    "description": "مقاييس الأداء والرؤى",
+    "filters": "نطاق التاريخ",
+    "filterStartDate": "تاريخ البداية",
+    "filterEndDate": "تاريخ النهاية",
+    "filterServiceType": "نوع الخدمة",
+    "tabDelay": "تحليل التأخيرات",
+    "tabTurnaround": "دوران الرحلات",
+    "tabPerformance": "أداء الوحدات",
+    "delayTitle": "متوسط التأخيرات حسب نوع الخدمة",
+    "turnaroundTitle": "ملخص دوران الرحلات",
+    "performanceTitle": "مقاييس أداء الوحدة",
+    "completion": "معدل الإكمال",
+    "avgDelay": "متوسط تأخير البداية",
+    "avgDuration": "متوسط المدة"
   }
 }
