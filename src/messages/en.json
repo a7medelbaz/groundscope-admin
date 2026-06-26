@@ -114,5 +114,42 @@
     "inProgress": "In Progress",
     "completed": "Completed",
     "noTasks": "No tasks"
+  },
+  "reports": {
+    "title": "Reports",
+    "description": "Manage incident and issue reports",
+    "detail": "Report Details",
+    "photo": "Attached Photo",
+    "description": "Description",
+    "timeline": "Timeline",
+    "timelineReported": "Reported",
+    "timelineAcknowledged": "Acknowledged",
+    "timelineResolved": "Resolved",
+    "acknowledge": "Acknowledge",
+    "resolve": "Resolve",
+    "close": "Close",
+    "export": "Export CSV",
+    "search": "Search reports...",
+    "filterStatus": "Filter by status",
+    "filterSeverity": "Filter by severity",
+    "allStatuses": "All statuses",
+    "allSeverities": "All severities",
+    "confirmAcknowledge": "Acknowledge Report?",
+    "confirmAcknowledgeDesc": "Mark this report as acknowledged. The supervisor will be notified.",
+    "confirmResolve": "Resolve Report?",
+    "confirmResolveDesc": "Mark this report as resolved. The supervisor will be notified.",
+    "columns": {
+      "flight": "Flight",
+      "unit": "Unit",
+      "serviceType": "Service Type",
+      "type": "Type",
+      "severity": "Severity",
+      "status": "Status",
+      "reportedBy": "Reported By",
+      "date": "Date",
+      "view": "View Details",
+      "acknowledge": "Acknowledge",
+      "resolve": "Resolve"
+    }
   }
 }
