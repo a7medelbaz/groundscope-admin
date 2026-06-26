@@ -42,7 +42,7 @@ export function UnitForm({ initialData, onSubmit, isLoading }: UnitFormProps) {
     defaultValues: {
       name: initialData?.name || "",
       service_type_id: initialData?.service_type_id || "",
-      status: (initialData?.status as "available" | "busy" | "offline") || "available",
+      status: (initialData?.status as any) || "available",
       compatible_aircraft: initialData?.compatible_aircraft || [],
       shift_start_time: initialData?.shift_start_time || "",
       shift_end_time: initialData?.shift_end_time || "",
@@ -61,6 +61,7 @@ export function UnitForm({ initialData, onSubmit, isLoading }: UnitFormProps) {
           Basic Information
         </h4>
         <div className="space-y-4">
+          {/* Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-2">
               Unit Name <span className="text-error">*</span>
@@ -75,6 +76,7 @@ export function UnitForm({ initialData, onSubmit, isLoading }: UnitFormProps) {
             {errors.name && <p className="text-error text-xs mt-1.5 font-medium">{errors.name.message}</p>}
           </div>
 
+          {/* Service Type & Status (2 columns) */}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="service_type" className="block text-sm font-semibold text-text-primary mb-2">
@@ -88,7 +90,9 @@ export function UnitForm({ initialData, onSubmit, isLoading }: UnitFormProps) {
               >
                 <option value="">Select...</option>
                 {serviceTypes.map((st) => (
-                  <option key={st.id} value={st.id}>{st.name}</option>
+                  <option key={st.id} value={st.id}>
+                    {st.name}
+                  </option>
                 ))}
               </select>
               {errors.service_type_id && (
@@ -121,15 +125,24 @@ export function UnitForm({ initialData, onSubmit, isLoading }: UnitFormProps) {
           Operational Settings
         </h4>
         <div className="space-y-4">
+          {/* Compatible Aircraft */}
           <div>
             <label className="block text-sm font-semibold text-text-primary mb-2">
               Compatible Aircraft Types
             </label>
-            <TagInput value={aircraftTags} onChange={setAircraftTags} placeholder="e.g., B787, A380" disabled={isLoading} />
+            <TagInput
+              value={aircraftTags}
+              onChange={setAircraftTags}
+              placeholder="e.g., B787, A380"
+              disabled={isLoading}
+            />
           </div>
 
+          {/* Shift Times */}
           <div>
-            <label className="block text-sm font-semibold text-text-primary mb-3">Working Shift</label>
+            <label className="block text-sm font-semibold text-text-primary mb-3">
+              Working Shift
+            </label>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="start" className="block text-xs text-text-secondary font-medium mb-1.5">
@@ -160,6 +173,7 @@ export function UnitForm({ initialData, onSubmit, isLoading }: UnitFormProps) {
         </div>
       </div>
 
+      {/* Submit */}
       <button
         type="submit"
         disabled={isLoading}

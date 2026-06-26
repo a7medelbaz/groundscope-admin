@@ -17,9 +17,10 @@ export function getUnitsColumns(props: UnitsColumnProps): ColumnDef<Unit>[] {
     {
       accessorKey: "name",
       header: "Unit Name",
-      cell: (info) => (
-        <span className="font-bold text-primary-200">{info.getValue<string>()}</span>
-      ),
+      cell: (info) => {
+        const value = info.getValue<string>();
+        return <span className="font-bold text-primary-200">{value}</span>;
+      },
     },
     {
       accessorKey: "status",
@@ -53,7 +54,7 @@ export function getUnitsColumns(props: UnitsColumnProps): ColumnDef<Unit>[] {
         }
         return (
           <span className="text-sm">
-            {unit.shift_start_time} – {unit.shift_end_time}
+            {unit.shift_start_time} - {unit.shift_end_time}
           </span>
         );
       },
@@ -61,11 +62,14 @@ export function getUnitsColumns(props: UnitsColumnProps): ColumnDef<Unit>[] {
     {
       accessorKey: "created_at",
       header: "Created",
-      cell: (info) => (
-        <span className="text-text-secondary text-sm">
-          {new Date(info.getValue<string>()).toLocaleDateString()}
-        </span>
-      ),
+      cell: (info) => {
+        const value = info.getValue<string>();
+        return (
+          <span className="text-text-secondary text-sm">
+            {new Date(value).toLocaleDateString()}
+          </span>
+        );
+      },
     },
     {
       id: "actions",

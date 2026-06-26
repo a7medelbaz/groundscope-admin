@@ -17,6 +17,20 @@ export async function getUnitMembers(unitId: string): Promise<UnitMember[]> {
   return (data || []) as UnitMember[];
 }
 
+export async function getUnitMemberById(id: string): Promise<UnitMember | null> {
+  const supabase = (await createServerSupabaseClient()) as any;
+
+  const { data, error } = await supabase
+    .from("unit_members")
+    .select("*")
+    .eq("id", id)
+    .eq("is_active", true)
+    .single();
+
+  if (error && error.code !== "PGRST116") throw error;
+  return (data as UnitMember) || null;
+}
+
 export async function createUnitMember(input: {
   unit_id: string;
   full_name: string;
@@ -79,7 +93,8 @@ export async function uploadMemberPhoto(
 ): Promise<string> {
   const supabase = (await createServerSupabaseClient()) as any;
   const ext = file.name.split(".").pop();
-  const path = `unit-members/${unitId}/${memberId}.${ext}`;
+  const filename = `${memberId}.${ext}`;
+  const path = `unit-members/${unitId}/${filename}`;
 
   const { error: uploadError } = await supabase.storage
     .from("unit-members")

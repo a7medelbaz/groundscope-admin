@@ -44,16 +44,14 @@ export function MemberForm({ unitId, initialData, onSuccess }: MemberFormProps) 
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file) return;
-    setSelectedFile(file);
-    const reader = new FileReader();
-    reader.onload = (event) => setPhotoPreview(event.target?.result as string);
-    reader.readAsDataURL(file);
-  };
-
-  const clearPhoto = () => {
-    setPhotoPreview(null);
-    setSelectedFile(null);
+    if (file) {
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setPhotoPreview(event.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleFormSubmit = async (data: MemberFormData) => {
@@ -87,32 +85,43 @@ export function MemberForm({ unitId, initialData, onSuccess }: MemberFormProps) 
       {/* Photo Upload */}
       <div>
         <label className="block text-sm font-semibold text-text-primary mb-3">Photo</label>
-        {photoPreview ? (
-          <div className="relative w-24 h-24 rounded-control overflow-hidden">
-            <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
-            <button
-              type="button"
-              onClick={clearPhoto}
-              className="absolute top-1 end-1 p-1 bg-error rounded-full text-white hover:bg-error/90"
-            >
-              <X className="w-3 h-3" strokeWidth={3} />
-            </button>
-          </div>
-        ) : (
-          <label className="flex items-center justify-center w-24 h-24 border-2 border-dashed border-divider rounded-control cursor-pointer hover:border-primary-200 transition-colors">
-            <Upload className="w-5 h-5 text-text-hint" strokeWidth={1.5} />
-            <input type="file" accept="image/*" onChange={handlePhotoChange} className="hidden" disabled={isLoading} />
-          </label>
-        )}
+        <div className="relative">
+          {photoPreview ? (
+            <div className="relative w-24 h-24 rounded-control overflow-hidden">
+              <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
+              <button
+                type="button"
+                onClick={() => {
+                  setPhotoPreview(null);
+                  setSelectedFile(null);
+                }}
+                className="absolute top-1 end-1 p-1 bg-error rounded-full text-white hover:bg-error/90"
+              >
+                <X className="w-3 h-3" strokeWidth={3} />
+              </button>
+            </div>
+          ) : (
+            <label className="flex items-center justify-center w-24 h-24 border-2 border-dashed border-divider rounded-control cursor-pointer hover:border-primary-200 transition-colors">
+              <Upload className="w-5 h-5 text-text-hint" strokeWidth={1.5} />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handlePhotoChange}
+                className="hidden"
+                disabled={isLoading}
+              />
+            </label>
+          )}
+        </div>
       </div>
 
       {/* Name */}
       <div>
-        <label htmlFor="fname" className="block text-sm font-semibold text-text-primary mb-2">
-          Full Name <span className="text-error">*</span>
+        <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-2">
+          Full Name
         </label>
         <input
-          id="fname"
+          id="name"
           {...register("full_name")}
           placeholder="e.g., Ahmed Hassan"
           className="w-full px-4 py-2.5 border border-border rounded-control bg-background text-text-primary placeholder:text-text-hint focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-200 transition-colors disabled:opacity-60"
@@ -124,7 +133,7 @@ export function MemberForm({ unitId, initialData, onSuccess }: MemberFormProps) 
       {/* Position */}
       <div>
         <label htmlFor="position" className="block text-sm font-semibold text-text-primary mb-2">
-          Position <span className="text-error">*</span>
+          Position
         </label>
         <input
           id="position"
@@ -133,7 +142,9 @@ export function MemberForm({ unitId, initialData, onSuccess }: MemberFormProps) 
           className="w-full px-4 py-2.5 border border-border rounded-control bg-background text-text-primary placeholder:text-text-hint focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-200 transition-colors disabled:opacity-60"
           disabled={isLoading}
         />
-        {errors.position && <p className="text-error text-xs mt-1.5 font-medium">{errors.position.message}</p>}
+        {errors.position && (
+          <p className="text-error text-xs mt-1.5 font-medium">{errors.position.message}</p>
+        )}
       </div>
 
       {/* Phone */}
@@ -144,7 +155,7 @@ export function MemberForm({ unitId, initialData, onSuccess }: MemberFormProps) 
         <input
           id="phone"
           {...register("phone")}
-          placeholder="+20 1234567890"
+          placeholder="e.g., +20 1234567890"
           className="w-full px-4 py-2.5 border border-border rounded-control bg-background text-text-primary placeholder:text-text-hint focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-200 transition-colors disabled:opacity-60"
           disabled={isLoading}
         />
@@ -152,18 +163,19 @@ export function MemberForm({ unitId, initialData, onSuccess }: MemberFormProps) 
 
       {/* National ID */}
       <div>
-        <label htmlFor="nid" className="block text-sm font-semibold text-text-primary mb-2">
+        <label htmlFor="id" className="block text-sm font-semibold text-text-primary mb-2">
           National ID (Optional)
         </label>
         <input
-          id="nid"
+          id="id"
           {...register("national_id")}
-          placeholder="29912345678901"
+          placeholder="e.g., 29912345678901"
           className="w-full px-4 py-2.5 border border-border rounded-control bg-background text-text-primary placeholder:text-text-hint focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-200 transition-colors disabled:opacity-60"
           disabled={isLoading}
         />
       </div>
 
+      {/* Submit */}
       <button
         type="submit"
         disabled={isLoading}

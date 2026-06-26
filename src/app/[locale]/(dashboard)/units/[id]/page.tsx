@@ -88,6 +88,7 @@ export default function UnitDetailPage() {
         description={isNew ? "Add a new service unit" : "Manage unit information and members"}
       />
 
+      {/* Tabs (show only for existing units) */}
       {unit && !isNew && (
         <div className="flex gap-1 mb-6 border-b border-divider">
           {[
@@ -113,12 +114,14 @@ export default function UnitDetailPage() {
         </div>
       )}
 
+      {/* Content */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
         key={activeTab}
       >
+        {/* Info Tab */}
         {(isNew || activeTab === "info") && (
           <Card className="max-w-2xl">
             <CardBody className="p-8">
@@ -134,6 +137,7 @@ export default function UnitDetailPage() {
           </Card>
         )}
 
+        {/* Members Tab */}
         {unit && !isNew && activeTab === "members" && (
           <UnitMembersSection unit={unit} members={members} onMembersUpdate={handleMembersUpdate} />
         )}

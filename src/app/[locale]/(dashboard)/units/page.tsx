@@ -108,6 +108,7 @@ export default function UnitsPage() {
         </motion.button>
       </div>
 
+      {/* Units Table */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -125,6 +126,7 @@ export default function UnitsPage() {
         </Card>
       </motion.div>
 
+      {/* Delete Confirmation */}
       <ConfirmDialog
         isOpen={!!deleteTarget}
         title="Delete Unit?"
