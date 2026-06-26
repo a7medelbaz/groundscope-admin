@@ -34,6 +34,8 @@
     "confirm": "Confirm",
     "confirmDelete": "Are you sure? This action cannot be undone.",
     "adminsOnly": "Admins only",
+    "administrator": "Administrator",
+    "viewAll": "View all",
     "noData": "No data available"
   },
   "auth": {
