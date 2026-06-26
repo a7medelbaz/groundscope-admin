@@ -1,41 +1,59 @@
 import { useTranslations } from "next-intl";
-import { LogoutButton } from "./logout-button";
+import { PageHeader } from "@/components/ui/page-header";
+import { Card, CardBody } from "@/components/ui/card";
 
 export default function DashboardPage() {
   const t = useTranslations();
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-4xl font-bold text-text-primary mb-2">
-              {t("nav.overview")}
-            </h1>
-            <p className="text-text-secondary">
-              Phase 2: Authentication — Admin access verified
-            </p>
-          </div>
-          <LogoutButton />
-        </div>
+    <>
+      <PageHeader
+        title={t("nav.overview")}
+        description="Real-time airport ground services coordination"
+      />
 
-        {/* Status Card */}
-        <div className="bg-surface border border-border rounded-lg p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-text-primary mb-4">
+      <Card>
+        <CardBody className="space-y-4">
+          <h2 className="text-lg font-semibold text-text-primary">
             {t("app.name")} Admin Dashboard
           </h2>
-          <ul className="space-y-2 text-text-secondary">
-            <li>✅ Phase 1: Foundation — Design system, i18n, theme</li>
-            <li>✅ Phase 2: Authentication — Login and admin gate</li>
-            <li>🔄 Phase 3: Layout shell (coming next)</li>
-            <li>📋 Phase 4-12: Feature modules</li>
+
+          <ul className="space-y-3 text-text-secondary">
+            <li className="flex items-start gap-3">
+              <span>✅</span>
+              <div>
+                <p className="font-semibold text-text-primary">Phase 1: Foundation</p>
+                <p className="text-sm text-text-hint">Design system, i18n, theme setup</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <span>✅</span>
+              <div>
+                <p className="font-semibold text-text-primary">Phase 2: Authentication</p>
+                <p className="text-sm text-text-hint">Login and admin-only access control</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <span>✅</span>
+              <div>
+                <p className="font-semibold text-text-primary">Phase 3: Layout Shell</p>
+                <p className="text-sm text-text-hint">Sidebar, Topbar, UI primitives</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <span>🔄</span>
+              <div>
+                <p className="font-semibold text-text-primary">Phase 4-12: Feature Modules</p>
+                <p className="text-sm text-text-hint">CRUD operations and real-time features</p>
+              </div>
+            </li>
           </ul>
-          <p className="text-text-hint text-sm mt-4">
-            You are logged in as an admin. This is a placeholder dashboard.
+
+          <p className="text-text-hint text-sm pt-4 border-t border-divider">
+            You are logged in as an admin. Navigate using the sidebar to access different modules.
           </p>
-        </div>
-      </div>
-    </div>
+        </CardBody>
+      </Card>
+    </>
   );
 }
