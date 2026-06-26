@@ -9,7 +9,7 @@ import type { ServiceType } from "@/lib/types/database";
 const serviceTypeSchema = z.object({
   name: z.string().min(1, "Name is required"),
   description: z.string().optional(),
-  default_duration_minutes: z.coerce.number().int().min(1, "Duration must be at least 1 minute"),
+  default_duration_minutes: z.number().int().min(1, "Duration must be at least 1 minute"),
   icon: z.string().optional(),
 });
 
@@ -25,7 +25,6 @@ export function ServiceTypeForm({ initialData, onSubmit, isLoading }: ServiceTyp
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<ServiceTypeFormData>({
     resolver: zodResolver(serviceTypeSchema),
@@ -39,8 +38,12 @@ export function ServiceTypeForm({ initialData, onSubmit, isLoading }: ServiceTyp
     },
   });
 
+  const handleFormSubmit = async (data: ServiceTypeFormData) => {
+    await onSubmit(data);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-5">
       {/* Name */}
       <div>
         <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-2">
@@ -83,7 +86,7 @@ export function ServiceTypeForm({ initialData, onSubmit, isLoading }: ServiceTyp
           id="duration"
           type="number"
           min="1"
-          {...register("default_duration_minutes")}
+          {...register("default_duration_minutes", { valueAsNumber: true })}
           placeholder="30"
           className="w-full px-4 py-2.5 border border-border rounded-control bg-background text-text-primary placeholder:text-text-hint focus:outline-none focus:ring-2 focus:ring-primary-200 focus:border-primary-200 transition-colors disabled:opacity-60"
           disabled={isLoading}

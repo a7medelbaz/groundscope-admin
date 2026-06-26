@@ -4,7 +4,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { ServiceType } from "@/lib/types/database";
 
 export async function getServiceTypes(): Promise<ServiceType[]> {
-  const supabase = await createServerSupabaseClient();
+  const supabase = (await createServerSupabaseClient()) as any;
 
   const { data, error } = await supabase
     .from("service_types")
@@ -13,11 +13,11 @@ export async function getServiceTypes(): Promise<ServiceType[]> {
     .order("created_at", { ascending: false });
 
   if (error) throw error;
-  return data || [];
+  return (data || []) as ServiceType[];
 }
 
 export async function getServiceTypeById(id: string): Promise<ServiceType | null> {
-  const supabase = await createServerSupabaseClient();
+  const supabase = (await createServerSupabaseClient()) as any;
 
   const { data, error } = await supabase
     .from("service_types")
@@ -27,7 +27,7 @@ export async function getServiceTypeById(id: string): Promise<ServiceType | null
     .single();
 
   if (error && error.code !== "PGRST116") throw error;
-  return data || null;
+  return (data as ServiceType) || null;
 }
 
 export async function createServiceType(input: {
@@ -36,16 +36,16 @@ export async function createServiceType(input: {
   default_duration_minutes: number;
   icon?: string;
 }): Promise<ServiceType> {
-  const supabase = await createServerSupabaseClient();
+  const supabase = (await createServerSupabaseClient()) as any;
 
   const { data, error } = await supabase
     .from("service_types")
-    .insert([{ ...input, is_active: true }])
+    .insert([input])
     .select()
     .single();
 
   if (error) throw error;
-  return data;
+  return data as ServiceType;
 }
 
 export async function updateServiceType(
@@ -57,7 +57,7 @@ export async function updateServiceType(
     icon?: string;
   }>
 ): Promise<ServiceType> {
-  const supabase = await createServerSupabaseClient();
+  const supabase = (await createServerSupabaseClient()) as any;
 
   const { data, error } = await supabase
     .from("service_types")
@@ -68,11 +68,11 @@ export async function updateServiceType(
     .single();
 
   if (error) throw error;
-  return data;
+  return data as ServiceType;
 }
 
 export async function deleteServiceType(id: string): Promise<void> {
-  const supabase = await createServerSupabaseClient();
+  const supabase = (await createServerSupabaseClient()) as any;
 
   const { error } = await supabase
     .from("service_types")
