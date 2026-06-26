@@ -27,11 +27,9 @@ export function generateStaticParams() {
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   
-  // Load messages directly instead of using getMessages()
   let messages = {};
   try {
-    const messagesModule = await import(`@/messages/${locale}.json`);
-    messages = messagesModule.default;
+    messages = (await import(`@/messages/${locale}.json`)).default;
   } catch (error) {
     console.error(`Failed to load messages for locale ${locale}:`, error);
   }
@@ -39,7 +37,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <LocaleUpdater locale={locale} manropeVar={manrope.variable} tajawalVar={tajawal.variable}>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-        <NextIntlClientProvider messages={messages} locale={locale}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
       </ThemeProvider>
