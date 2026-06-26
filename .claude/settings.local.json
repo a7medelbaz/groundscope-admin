@@ -5,7 +5,8 @@
       "Bash(npm run *)",
       "Bash(curl -s http://localhost:3000/en/dashboard)",
       "Bash(tail -50 /tmp/dev.log)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(node -e \"console.log\\('lucide-react:', require\\('./package.json'\\).dependencies['lucide-react'] || 'NOT INSTALLED'\\); console.log\\('framer-motion:', require\\('./package.json'\\).dependencies['framer-motion'] || 'NOT INSTALLED'\\); console.log\\('clsx:', require\\('./package.json'\\).dependencies['clsx'] || 'NOT INSTALLED'\\); console.log\\('tailwind-merge:', require\\('./package.json'\\).dependencies['tailwind-merge'] || 'NOT INSTALLED'\\); console.log\\('cva:', require\\('./package.json'\\).dependencies['class-variance-authority'] || 'NOT INSTALLED'\\)\")"
     ]
   }
 }
