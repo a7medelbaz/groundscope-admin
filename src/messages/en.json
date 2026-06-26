@@ -1,0 +1,91 @@
+{
+  "app": {
+    "name": "GroundScope",
+    "tagline": "Airport Ground Services Coordination"
+  },
+  "nav": {
+    "overview": "Overview",
+    "operations": "Operations",
+    "flights": "Flights",
+    "reports": "Reports",
+    "analytics": "Analytics",
+    "masterData": "Master Data",
+    "serviceTypes": "Service Types",
+    "stands": "Stands",
+    "units": "Units",
+    "users": "Users"
+  },
+  "common": {
+    "logout": "Logout",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "confirm": "Confirm",
+    "confirmDelete": "Are you sure? This action cannot be undone.",
+    "adminsOnly": "Admins only"
+  },
+  "auth": {
+    "loginTitle": "Admin Login",
+    "loginDescription": "Sign in with your GroundScope admin credentials",
+    "invalidCredentials": "Invalid email or password",
+    "adminRequired": "Admin access required",
+    "loginError": "Login failed. Please try again.",
+    "logoutSuccess": "Logged out successfully"
+  },
+  "task": {
+    "status": {
+      "pending": "Pending",
+      "inProgress": "In Progress",
+      "paused": "Paused",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "priority": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "critical": "Critical"
+    }
+  },
+  "report": {
+    "status": {
+      "open": "Open",
+      "acknowledged": "Acknowledged",
+      "inProgress": "In Progress",
+      "resolved": "Resolved"
+    },
+    "severity": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "critical": "Critical"
+    }
+  },
+  "unit": {
+    "status": {
+      "available": "Available",
+      "busy": "Busy",
+      "offline": "Offline"
+    }
+  },
+  "flight": {
+    "status": {
+      "scheduled": "Scheduled",
+      "active": "Active",
+      "arrived": "Arrived",
+      "departed": "Departed",
+      "cancelled": "Cancelled"
+    }
+  }
+}
