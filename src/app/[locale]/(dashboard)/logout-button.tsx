@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { signOut } from "@/lib/queries/auth";
+import { signOut } from "@/lib/actions/auth";
 import { useState } from "react";
 
 export function LogoutButton() {

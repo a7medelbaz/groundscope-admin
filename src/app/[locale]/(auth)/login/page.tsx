@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signInWithPassword } from "@/lib/queries/auth";
+import { signInWithPassword } from "@/lib/actions/auth";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -34,14 +34,14 @@ export default function LoginPage() {
     setGlobalError(null);
 
     try {
-      const { user, error } = await signInWithPassword(data.email, data.password);
+      const { success, error } = await signInWithPassword(data.email, data.password);
 
       if (error) {
         setGlobalError(error);
         return;
       }
 
-      if (user) {
+      if (success) {
         router.push("/");
       }
     } catch (err) {

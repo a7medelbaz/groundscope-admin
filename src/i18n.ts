@@ -4,13 +4,16 @@ const locales = ["en", "ar"] as const;
 export type Locale = (typeof locales)[number];
 
 export default getRequestConfig(async ({ locale }) => {
-  if (!locales.includes(locale as Locale)) {
+  const validLocale = (locale || "en") as Locale;
+
+  if (!locales.includes(validLocale)) {
     throw new Error(`Invalid locale: ${locale}`);
   }
 
   return {
-    messages: (await import(`./messages/${locale}.json`)).default,
-    timeZone: "UTC",
+    messages: (await import(`./messages/${validLocale}.json`)).default,
+    timeZone: "UTC" as const,
     now: new Date(),
+    locale: validLocale,
   };
 });
