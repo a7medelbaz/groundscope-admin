@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, Reorder } from "framer-motion";
 import { Clock, CheckCircle2, AlertCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { TaskDetailSheet } from "@/components/sections/task-detail-sheet";
 import { updateTaskStatus } from "@/lib/queries/operations";
 import type { Task } from "@/lib/types/database";
 
@@ -20,6 +21,8 @@ const columns = [
 
 export function KanbanBoard({ tasks, onTasksUpdate }: KanbanBoardProps) {
   const [isUpdating, setIsUpdating] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
 
   const handleStatusChange = async (taskId: string, newStatus: string) => {
     setIsUpdating(true);
@@ -33,7 +36,14 @@ export function KanbanBoard({ tasks, onTasksUpdate }: KanbanBoardProps) {
     }
   };
 
+  const handleTaskClick = (task: Task) => {
+    setSelectedTask(task);
+    setIsDetailOpen(true);
+  };
+
   return (
+    <>
+      <TaskDetailSheet task={selectedTask} open={isDetailOpen} onOpenChange={setIsDetailOpen} />
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {columns.map((column) => {
         const Icon = column.icon;
@@ -71,7 +81,8 @@ export function KanbanBoard({ tasks, onTasksUpdate }: KanbanBoardProps) {
                     >
                       <motion.div
                         layoutId={task.id}
-                        className="bg-surface border border-divider rounded-control p-3 shadow-sm hover:shadow-raised transition-shadow"
+                        onClick={() => handleTaskClick(task)}
+                        className="bg-surface border border-divider rounded-control p-3 shadow-sm hover:shadow-raised transition-shadow cursor-pointer hover:bg-surface-variant"
                       >
                         <div className="flex items-start justify-between gap-2 mb-2">
                           <p className="font-semibold text-sm text-text-primary flex-1">{task.id.slice(0, 8)}</p>
@@ -128,6 +139,7 @@ export function KanbanBoard({ tasks, onTasksUpdate }: KanbanBoardProps) {
           </motion.div>
         );
       })}
-    </div>
+      </div>
+    </>
   );
 }
