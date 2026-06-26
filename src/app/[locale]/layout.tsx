@@ -1,8 +1,8 @@
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { Manrope, Tajawal } from "next/font/google";
 import React from "react";
+import { LocaleUpdater } from "@/components/locale-updater";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -26,26 +26,27 @@ export function generateStaticParams() {
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
-  const messages = await getMessages();
-  const dir = locale === "ar" ? "rtl" : "ltr";
+
+  // Load messages directly — avoids the next-intl config file discovery requirement
+  let messages: Record<string, unknown> = {};
+  try {
+    messages = (await import(`@/messages/${locale}.json`)).default;
+  } catch {
+    // fallback to English if locale file missing
+    try {
+      messages = (await import(`@/messages/en.json`)).default;
+    } catch {
+      // no messages available, translations will show keys
+    }
+  }
 
   return (
-    <html
-      lang={locale}
-      dir={dir}
-      suppressHydrationWarning
-      className={`${manrope.variable} ${tajawal.variable}`}
-    >
-      <body
-        className="antialiased"
-        style={{ fontFamily: "var(--font-manrope), var(--font-tajawal)" }}
-      >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <NextIntlClientProvider messages={messages} locale={locale}>
-            {children}
-          </NextIntlClientProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <LocaleUpdater locale={locale} manropeVar={manrope.variable} tajawalVar={tajawal.variable}>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </ThemeProvider>
+    </LocaleUpdater>
   );
 }

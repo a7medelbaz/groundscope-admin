@@ -6,7 +6,20 @@
       "Bash(curl -s http://localhost:3000/en/dashboard)",
       "Bash(tail -50 /tmp/dev.log)",
       "Read(//tmp/**)",
-      "Bash(node -e \"console.log\\('lucide-react:', require\\('./package.json'\\).dependencies['lucide-react'] || 'NOT INSTALLED'\\); console.log\\('framer-motion:', require\\('./package.json'\\).dependencies['framer-motion'] || 'NOT INSTALLED'\\); console.log\\('clsx:', require\\('./package.json'\\).dependencies['clsx'] || 'NOT INSTALLED'\\); console.log\\('tailwind-merge:', require\\('./package.json'\\).dependencies['tailwind-merge'] || 'NOT INSTALLED'\\); console.log\\('cva:', require\\('./package.json'\\).dependencies['class-variance-authority'] || 'NOT INSTALLED'\\)\")"
+      "Bash(node -e \"console.log\\('lucide-react:', require\\('./package.json'\\).dependencies['lucide-react'] || 'NOT INSTALLED'\\); console.log\\('framer-motion:', require\\('./package.json'\\).dependencies['framer-motion'] || 'NOT INSTALLED'\\); console.log\\('clsx:', require\\('./package.json'\\).dependencies['clsx'] || 'NOT INSTALLED'\\); console.log\\('tailwind-merge:', require\\('./package.json'\\).dependencies['tailwind-merge'] || 'NOT INSTALLED'\\); console.log\\('cva:', require\\('./package.json'\\).dependencies['class-variance-authority'] || 'NOT INSTALLED'\\)\")",
+      "Bash(curl -s http://localhost:3001/en -I)",
+      "Bash(curl -s http://localhost:3001/en/operations -I)",
+      "Bash(jobs -l)",
+      "PowerShell(npm run build 2>&1)",
+      "PowerShell(grep -E \"�|Error|successfully\")",
+      "PowerShell(head -10)",
+      "Bash(curl -s -w \"\\\\nStatus: %{http_code}\\\\n\" http://localhost:3002/en)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Remove '\\\\''use client'\\\\'' directive from locale layout - PERMANENT FIX *)",
+      "PowerShell(\"� Deleted report-detail-sheet.tsx\")"
+    ],
+    "additionalDirectories": [
+      "c:\\1_Flask_Projects\\GroundScope_Graduation_project\\groundscope-admin\\src\\components\\dialogs"
     ]
   }
 }

@@ -4,7 +4,6 @@ import {
   getCoreRowModel,
   useReactTable,
   type ColumnDef,
-  type Row,
 } from "@tanstack/react-table";
 
 interface DataTableProps<T> {
