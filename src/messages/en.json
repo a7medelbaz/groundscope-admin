@@ -33,7 +33,8 @@
     "warning": "Warning",
     "confirm": "Confirm",
     "confirmDelete": "Are you sure? This action cannot be undone.",
-    "adminsOnly": "Admins only"
+    "adminsOnly": "Admins only",
+    "noData": "No data available"
   },
   "auth": {
     "loginTitle": "Admin Login",
@@ -87,5 +88,13 @@
       "departed": "Departed",
       "cancelled": "Cancelled"
     }
+  },
+  "overview": {
+    "flightsToday": "Flights Today",
+    "activeTasks": "Active Tasks",
+    "pendingRequests": "Pending Requests",
+    "openReports": "Open Reports",
+    "recentFlights": "Recent Flights",
+    "lastUpdated": "Last updated"
   }
 }
