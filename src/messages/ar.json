@@ -1,0 +1,91 @@
+{
+  "app": {
+    "name": "جراوندسكوب",
+    "tagline": "نظام تنسيق خدمات الأرضية بالمطار"
+  },
+  "nav": {
+    "overview": "نظرة عامة",
+    "operations": "العمليات",
+    "flights": "الرحلات",
+    "reports": "التقارير",
+    "analytics": "التحليلات",
+    "masterData": "البيانات الأساسية",
+    "serviceTypes": "أنواع الخدمات",
+    "stands": "المواقف",
+    "units": "الوحدات",
+    "users": "المستخدمون"
+  },
+  "common": {
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تحرير",
+    "add": "إضافة",
+    "close": "إغلاق",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "warning": "تحذير",
+    "confirm": "تأكيد",
+    "confirmDelete": "هل أنت متأكد؟ لا يمكن التراجع عن هذا الإجراء.",
+    "adminsOnly": "للمسؤولين فقط"
+  },
+  "auth": {
+    "loginTitle": "تسجيل دخول المسؤول",
+    "loginDescription": "سجل الدخول باستخدام بيانات اعتماد مسؤول GroundScope الخاصة بك",
+    "invalidCredentials": "بريد إلكتروني أو كلمة مرور غير صحيحة",
+    "adminRequired": "الوصول الإداري مطلوب",
+    "loginError": "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.",
+    "logoutSuccess": "تم تسجيل الخروج بنجاح"
+  },
+  "task": {
+    "status": {
+      "pending": "قيد الانتظار",
+      "inProgress": "قيد التنفيذ",
+      "paused": "موقوفة",
+      "completed": "مكتملة",
+      "cancelled": "ملغاة"
+    },
+    "priority": {
+      "low": "منخفضة",
+      "medium": "متوسطة",
+      "high": "عالية",
+      "critical": "حرجة"
+    }
+  },
+  "report": {
+    "status": {
+      "open": "مفتوحة",
+      "acknowledged": "تمت الموافقة عليها",
+      "inProgress": "قيد الحل",
+      "resolved": "تم حلها"
+    },
+    "severity": {
+      "low": "منخفضة",
+      "medium": "متوسطة",
+      "high": "عالية",
+      "critical": "حرجة"
+    }
+  },
+  "unit": {
+    "status": {
+      "available": "متاحة",
+      "busy": "مشغولة",
+      "offline": "غير متصلة"
+    }
+  },
+  "flight": {
+    "status": {
+      "scheduled": "مجدولة",
+      "active": "نشطة",
+      "arrived": "وصلت",
+      "departed": "غادرت",
+      "cancelled": "ملغاة"
+    }
+  }
+}
