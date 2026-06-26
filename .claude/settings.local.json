@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx shadcn-ui@latest init -y --typescript --base)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000/en/dashboard)",
+      "Bash(tail -50 /tmp/dev.log)",
+      "Read(//tmp/**)"
+    ]
+  }
+}
