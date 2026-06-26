@@ -1,4 +1,4 @@
-import { createServerClient, parseCookieHeader, serializeCookieHeader } from "@supabase/ssr";
+import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { Database } from "../types/database";
 
@@ -10,10 +10,10 @@ export async function createServerSupabaseClient() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll() {
-          return parseCookieHeader(cookieStore.toString());
+        getAll: async () => {
+          return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll: async (cookiesToSet) => {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)

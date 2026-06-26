@@ -33,7 +33,10 @@
     "warning": "تحذير",
     "confirm": "تأكيد",
     "confirmDelete": "هل أنت متأكد؟ لا يمكن التراجع عن هذا الإجراء.",
-    "adminsOnly": "للمسؤولين فقط"
+    "adminsOnly": "للمسؤولين فقط",
+    "administrator": "مدير النظام",
+    "viewAll": "عرض الكل",
+    "noData": "لا توجد بيانات متاحة"
   },
   "auth": {
     "loginTitle": "تسجيل دخول المسؤول",
@@ -87,5 +90,21 @@
       "departed": "غادرت",
       "cancelled": "ملغاة"
     }
+  },
+  "overview": {
+    "flightsToday": "الرحلات اليوم",
+    "activeTasks": "المهام النشطة",
+    "pendingRequests": "الطلبات المعلقة",
+    "openReports": "التقارير المفتوحة",
+    "recentFlights": "الرحلات الأخيرة",
+    "lastUpdated": "آخر تحديث"
+  },
+  "serviceType": {
+    "name": "اسم نوع الخدمة",
+    "description": "الوصف",
+    "duration": "المدة الافتراضية",
+    "icon": "الرمز",
+    "created": "تم الإنشاء",
+    "actions": "الإجراءات"
   }
 }

@@ -45,25 +45,15 @@
   --divider: #dfe1e7;
   --icon-primary: #272835;
   --icon-secondary: #818898;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Theme-Aware Tokens (Dark Mode) */
-    --text-primary: #ffffff;
-    --text-secondary: #a4acb9;
-    --text-hint: #666d80;
-    --text-disabled: #36394a;
-    --text-inverse: #000000;
-    --background: #121212;
-    --background-secondary: #262730;
-    --surface: #262730;
-    --surface-variant: #272835;
-    --border: #36394a;
-    --divider: #272835;
-    --icon-primary: #c1c7d0;
-    --icon-secondary: #666d80;
-  }
+  /* Elevation, radius & brand gradient */
+  --gradient-brand: linear-gradient(135deg, var(--primary-100), var(--primary-200), var(--primary-300));
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.04);
+  --shadow-raised: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-overlay: 0 12px 32px rgba(0, 0, 0, 0.16);
+  --radius-card: 16px;
+  --radius-chip: 8px;
+  --radius-control: 12px;
 }
 
 html.dark {
@@ -81,6 +71,11 @@ html.dark {
   --divider: #272835;
   --icon-primary: #c1c7d0;
   --icon-secondary: #666d80;
+
+  /* Raise shadow alpha so elevation reads on dark surfaces */
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --shadow-raised: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-overlay: 0 12px 32px rgba(0, 0, 0, 0.55);
 }
 
 body {
@@ -108,5 +103,17 @@ body {
 
   .pe-4 {
     padding-inline-end: 1rem;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

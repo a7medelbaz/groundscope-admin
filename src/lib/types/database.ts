@@ -13,6 +13,7 @@ export enum UnitStatus {
 
 export enum FlightStatus {
   SCHEDULED = "scheduled",
+  ACTIVE = "active",
   ARRIVED = "arrived",
   DEPARTED = "departed",
   CANCELLED = "cancelled",

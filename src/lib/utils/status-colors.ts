@@ -8,30 +8,30 @@ export function getTaskStatusColor(status: TaskStatus) {
     [TaskStatus.IN_PROGRESS]: {
       bg: "bg-primary-200/15",
       text: "text-primary-200",
-      border: "border-primary-200",
+      border: "border-primary-200/30",
     },
     [TaskStatus.COMPLETED]: {
       bg: "bg-success/15",
       text: "text-success",
-      border: "border-success",
+      border: "border-success/30",
     },
     [TaskStatus.PENDING]: {
       bg: "bg-warning/15",
       text: "text-warning",
-      border: "border-warning",
+      border: "border-warning/30",
     },
     [TaskStatus.PAUSED]: {
       bg: "bg-secondary-200/15",
       text: "text-secondary-200",
-      border: "border-secondary-200",
+      border: "border-secondary-200/30",
     },
     [TaskStatus.CANCELLED]: {
       bg: "bg-text-disabled/15",
       text: "text-text-disabled",
-      border: "border-text-disabled",
+      border: "border-text-disabled/30",
     },
   };
-  return colors[status];
+  return colors[status] ?? fallbackColor;
 }
 
 /**
@@ -42,25 +42,25 @@ export function getTaskPriorityColor(priority: TaskPriority) {
     [TaskPriority.CRITICAL]: {
       bg: "bg-error/15",
       text: "text-error",
-      border: "border-error",
+      border: "border-error/30",
     },
     [TaskPriority.HIGH]: {
       bg: "bg-secondary-200/15",
       text: "text-secondary-200",
-      border: "border-secondary-200",
+      border: "border-secondary-200/30",
     },
     [TaskPriority.MEDIUM]: {
       bg: "bg-warning/15",
       text: "text-warning",
-      border: "border-warning",
+      border: "border-warning/30",
     },
     [TaskPriority.LOW]: {
       bg: "bg-success/15",
       text: "text-success",
-      border: "border-success",
+      border: "border-success/30",
     },
   };
-  return colors[priority];
+  return colors[priority] ?? fallbackColor;
 }
 
 /**
@@ -71,20 +71,20 @@ export function getReportStatusColor(status: ReportStatus) {
     [ReportStatus.OPEN]: {
       bg: "bg-warning/15",
       text: "text-warning",
-      border: "border-warning",
+      border: "border-warning/30",
     },
     [ReportStatus.ACKNOWLEDGED]: {
       bg: "bg-info/15",
       text: "text-info",
-      border: "border-info",
+      border: "border-info/30",
     },
     [ReportStatus.RESOLVED]: {
       bg: "bg-success/15",
       text: "text-success",
-      border: "border-success",
+      border: "border-success/30",
     },
   };
-  return colors[status];
+  return colors[status] ?? fallbackColor;
 }
 
 /**
@@ -95,25 +95,25 @@ export function getReportSeverityColor(severity: ReportSeverity) {
     [ReportSeverity.LOW]: {
       bg: "bg-success/15",
       text: "text-success",
-      border: "border-success",
+      border: "border-success/30",
     },
     [ReportSeverity.MEDIUM]: {
       bg: "bg-warning/15",
       text: "text-warning",
-      border: "border-warning",
+      border: "border-warning/30",
     },
     [ReportSeverity.HIGH]: {
       bg: "bg-secondary-200/15",
       text: "text-secondary-200",
-      border: "border-secondary-200",
+      border: "border-secondary-200/30",
     },
     [ReportSeverity.CRITICAL]: {
       bg: "bg-error/15",
       text: "text-error",
-      border: "border-error",
+      border: "border-error/30",
     },
   };
-  return colors[severity];
+  return colors[severity] ?? fallbackColor;
 }
 
 /**
@@ -124,49 +124,56 @@ export function getUnitStatusColor(status: UnitStatus) {
     [UnitStatus.AVAILABLE]: {
       bg: "bg-success/15",
       text: "text-success",
-      border: "border-success",
+      border: "border-success/30",
     },
     [UnitStatus.BUSY]: {
       bg: "bg-warning/15",
       text: "text-warning",
-      border: "border-warning",
+      border: "border-warning/30",
     },
     [UnitStatus.OFFLINE]: {
       bg: "bg-text-disabled/15",
       text: "text-text-disabled",
-      border: "border-text-disabled",
+      border: "border-text-disabled/30",
     },
   };
-  return colors[status];
+  return colors[status] ?? fallbackColor;
 }
 
 /**
  * Get background and text color classes for a flight status
  */
+const fallbackColor = { bg: "bg-text-disabled/15", text: "text-text-disabled", border: "border-text-disabled/30" };
+
 export function getFlightStatusColor(status: FlightStatus) {
   const colors: Record<FlightStatus, { bg: string; text: string; border: string }> = {
     [FlightStatus.SCHEDULED]: {
       bg: "bg-info/15",
       text: "text-info",
-      border: "border-info",
+      border: "border-info/30",
     },
-    [FlightStatus.ARRIVED]: {
+    [FlightStatus.ACTIVE]: {
       bg: "bg-primary-200/15",
       text: "text-primary-200",
-      border: "border-primary-200",
+      border: "border-primary-200/30",
     },
-    [FlightStatus.DEPARTED]: {
+    [FlightStatus.ARRIVED]: {
       bg: "bg-success/15",
       text: "text-success",
-      border: "border-success",
+      border: "border-success/30",
     },
-    [FlightStatus.CANCELLED]: {
+    [FlightStatus.DEPARTED]: {
       bg: "bg-text-disabled/15",
       text: "text-text-disabled",
-      border: "border-text-disabled",
+      border: "border-text-disabled/30",
+    },
+    [FlightStatus.CANCELLED]: {
+      bg: "bg-error/15",
+      text: "text-error",
+      border: "border-error/30",
     },
   };
-  return colors[status];
+  return colors[status] ?? fallbackColor;
 }
 
 /**
