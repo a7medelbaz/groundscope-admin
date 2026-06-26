@@ -34,7 +34,7 @@ export function AnalyticsFilters({
       <Card>
         <CardBody className="space-y-4">
           <h3 className="font-medium text-text-primary">{t("filters")}</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-sm text-text-secondary">{t("filterStartDate")}</label>
               <input

@@ -52,7 +52,7 @@ export function ReportDetailHero({ report }: ReportDetailHeroProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 text-sm pt-2 border-t border-divider">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm pt-2 border-t border-divider">
           <div>
             <p className="text-text-hint font-medium">{t("reportedBy")}</p>
             <p className="text-text-primary mt-1">{reportedBy?.full_name}</p>

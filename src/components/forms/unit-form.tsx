@@ -77,7 +77,7 @@ export function UnitForm({ initialData, onSubmit, isLoading }: UnitFormProps) {
           </div>
 
           {/* Service Type & Status (2 columns) */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="service_type" className="block text-sm font-semibold text-text-primary mb-2">
                 Service Type <span className="text-error">*</span>
@@ -143,7 +143,7 @@ export function UnitForm({ initialData, onSubmit, isLoading }: UnitFormProps) {
             <label className="block text-sm font-semibold text-text-primary mb-3">
               Working Shift
             </label>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="start" className="block text-xs text-text-secondary font-medium mb-1.5">
                   Start Time
