@@ -106,5 +106,13 @@
     "icon": "Icon",
     "created": "Created",
     "actions": "Actions"
+  },
+  "operations": {
+    "title": "Operations Monitor",
+    "description": "Track and manage ground service tasks",
+    "pending": "Pending",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "noTasks": "No tasks"
   }
 }
