@@ -15,9 +15,6 @@ export function middleware(request: NextRequest) {
     return intlMiddleware(request);
   }
 
-  // 🔖 //TODO: Add session check for protected (dashboard) routes
-  // For now, let intl middleware handle routing
-  // After Phase 2, add: if (pathname.includes("/(dashboard)")) { check session }
   return intlMiddleware(request);
 }
 

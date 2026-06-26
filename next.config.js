@@ -7,9 +7,6 @@ const nextConfig = {
     ignoreDuringBuilds: false,
     dirs: ['src'],
   },
-  experimental: {
-    isrMemoryCacheSize: 0,
-  },
 };
 
 module.exports = nextConfig;
