@@ -15,7 +15,8 @@
       "PowerShell(head -10)",
       "Bash(curl -s -w \"\\\\nStatus: %{http_code}\\\\n\" http://localhost:3002/en)",
       "Bash(git add *)",
-      "Bash(git commit -m 'Remove '\\\\''use client'\\\\'' directive from locale layout - PERMANENT FIX *)"
+      "Bash(git commit -m 'Remove '\\\\''use client'\\\\'' directive from locale layout - PERMANENT FIX *)",
+      "PowerShell(\"� Deleted report-detail-sheet.tsx\")"
     ],
     "additionalDirectories": [
       "c:\\1_Flask_Projects\\GroundScope_Graduation_project\\groundscope-admin\\src\\components\\dialogs"

@@ -4,39 +4,33 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ReportWithJoins } from "@/lib/queries/reports";
-import { getReportStatusColor, getReportSeverityColor } from "@/lib/utils/status-colors";
-import { useTranslations } from "next-intl";
-import { MoreVertical } from "lucide-react";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  getReportStatusColor,
+  getReportSeverityColor,
+} from "@/lib/utils/status-colors";
+import { useTranslations } from "next-intl";
+import { Eye } from "lucide-react";
+import Link from "next/link";
 
 interface ColumnsProps {
   onViewDetail: (report: ReportWithJoins) => void;
-  onAcknowledge: (report: ReportWithJoins) => void;
-  onResolve: (report: ReportWithJoins) => void;
 }
 
 export function getReportsColumns({
   onViewDetail,
-  onAcknowledge,
-  onResolve,
 }: ColumnsProps): ColumnDef<ReportWithJoins>[] {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const t = useTranslations("reports.columns");
+  const t = useTranslations("reports");
 
   return [
     {
       accessorKey: "flights.flight_number",
-      header: t("flight"),
+      header: t("columns.flight"),
       cell: ({ row }) => row.original.flights?.flight_number || "—",
     },
     {
       accessorKey: "tasks.units.name",
-      header: t("unit"),
+      header: t("columns.unit"),
       cell: ({ row }) => {
         const task = row.original.tasks as any;
         return task?.units?.name || "—";
@@ -44,7 +38,7 @@ export function getReportsColumns({
     },
     {
       accessorKey: "tasks.service_types.name",
-      header: t("serviceType"),
+      header: t("columns.serviceType"),
       cell: ({ row }) => {
         const task = row.original.tasks as any;
         return task?.service_types?.name || "—";
@@ -52,17 +46,20 @@ export function getReportsColumns({
     },
     {
       accessorKey: "type",
-      header: t("type"),
-      cell: ({ row }) => row.getValue("type"),
+      header: t("columns.type"),
     },
     {
       accessorKey: "severity",
-      header: t("severity"),
+      header: t("columns.severity"),
       cell: ({ row }) => {
-        const severity = row.getValue("severity") as string;
+        const severity = row.original.severity;
         const color = getReportSeverityColor(severity);
         return (
-          <Badge variant="outline" className={color}>
+          <Badge
+            tone={color.text}
+            toneBg={color.bg}
+            toneBorder={color.border}
+          >
             {severity}
           </Badge>
         );
@@ -70,12 +67,17 @@ export function getReportsColumns({
     },
     {
       accessorKey: "status",
-      header: t("status"),
+      header: t("columns.status"),
       cell: ({ row }) => {
-        const status = row.getValue("status") as string;
+        const status = row.original.status;
         const color = getReportStatusColor(status);
         return (
-          <Badge variant="outline" className={color}>
+          <Badge
+            tone={color.text}
+            toneBg={color.bg}
+            toneBorder={color.border}
+            dot
+          >
             {status}
           </Badge>
         );
@@ -83,14 +85,14 @@ export function getReportsColumns({
     },
     {
       accessorKey: "users.full_name",
-      header: t("reportedBy"),
+      header: t("columns.reportedBy"),
       cell: ({ row }) => (row.original.users as any)?.full_name || "—",
     },
     {
       accessorKey: "created_at",
-      header: t("date"),
+      header: t("columns.date"),
       cell: ({ row }) => {
-        const date = new Date(row.getValue("created_at") as string);
+        const date = new Date(row.original.created_at);
         return date.toLocaleDateString(undefined, {
           month: "short",
           day: "numeric",
@@ -105,28 +107,11 @@ export function getReportsColumns({
       cell: ({ row }) => {
         const report = row.original;
         return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm">
-                <MoreVertical className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => onViewDetail(report)}>
-                {t("view")}
-              </DropdownMenuItem>
-              {report.status === "open" && (
-                <DropdownMenuItem onClick={() => onAcknowledge(report)}>
-                  {t("acknowledge")}
-                </DropdownMenuItem>
-              )}
-              {report.status !== "resolved" && (
-                <DropdownMenuItem onClick={() => onResolve(report)}>
-                  {t("resolve")}
-                </DropdownMenuItem>
-              )}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Link href={`/reports/${report.id}`}>
+            <Button variant="text" size="sm">
+              <Eye className="h-4 w-4" />
+            </Button>
+          </Link>
         );
       },
     },
