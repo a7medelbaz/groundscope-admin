@@ -1,4 +1,3 @@
-import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 import { Manrope, Tajawal } from "next/font/google";
 import React from "react";
@@ -26,20 +25,11 @@ export function generateStaticParams() {
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
-  
-  let messages = {};
-  try {
-    messages = (await import(`@/messages/${locale}.json`)).default;
-  } catch (error) {
-    console.error(`Failed to load messages for locale ${locale}:`, error);
-  }
 
   return (
     <LocaleUpdater locale={locale} manropeVar={manrope.variable} tajawalVar={tajawal.variable}>
       <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        {children}
       </ThemeProvider>
     </LocaleUpdater>
   );

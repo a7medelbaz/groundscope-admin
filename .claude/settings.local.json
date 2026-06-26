@@ -13,7 +13,9 @@
       "PowerShell(npm run build 2>&1)",
       "PowerShell(grep -E \"�|Error|successfully\")",
       "PowerShell(head -10)",
-      "Bash(curl -s -w \"\\\\nStatus: %{http_code}\\\\n\" http://localhost:3002/en)"
+      "Bash(curl -s -w \"\\\\nStatus: %{http_code}\\\\n\" http://localhost:3002/en)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Remove '\\\\''use client'\\\\'' directive from locale layout - PERMANENT FIX *)"
     ],
     "additionalDirectories": [
       "c:\\1_Flask_Projects\\GroundScope_Graduation_project\\groundscope-admin\\src\\components\\dialogs"
