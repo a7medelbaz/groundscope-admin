@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Bell, Sun, Moon, Languages } from "lucide-react";
+import { Bell, Sun, Moon, Languages, Menu } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 
 /** Maps the first path segment (after locale) to its nav translation key. */
@@ -20,7 +20,7 @@ const segmentToNavKey: Record<string, string> = {
   users: "nav.users",
 };
 
-export function Topbar() {
+export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
@@ -44,8 +44,17 @@ export function Topbar() {
     "p-2 rounded-control text-text-secondary hover:bg-surface-variant hover:text-text-primary transition-colors";
 
   return (
-    <header className="h-16 bg-surface border-b border-border flex items-center justify-between px-6">
-      <h1 className="text-lg font-extrabold text-text-primary">{t(titleKey)}</h1>
+    <header className="h-16 bg-surface border-b border-border flex items-center justify-between px-4 sm:px-6">
+      <div className="flex items-center gap-2 min-w-0">
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden p-2 -ms-2 rounded-control text-text-secondary hover:bg-surface-variant transition-colors"
+          aria-label="Open menu"
+        >
+          <Menu className="w-5 h-5" strokeWidth={2} />
+        </button>
+        <h1 className="text-base sm:text-lg font-extrabold text-text-primary truncate">{t(titleKey)}</h1>
+      </div>
 
       <div className="flex items-center gap-2">
         {/* Notifications */}
