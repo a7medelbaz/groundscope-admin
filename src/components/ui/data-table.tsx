@@ -31,15 +31,15 @@ export function DataTable<T>({ columns, data, getRowKey }: DataTableProps<T>) {
   }
 
   return (
-    <div className="overflow-x-auto border border-divider rounded-control">
-      <table className="w-full">
+    <div className="w-full overflow-x-auto border border-divider rounded-control">
+      <table className="w-full min-w-[640px]">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} className="border-b border-divider">
               {headerGroup.headers.map((header) => (
                 <th
                   key={header.id}
-                  className="px-6 py-4 text-start text-sm font-semibold text-text-secondary"
+                  className="px-4 py-3 sm:px-6 sm:py-4 text-start text-sm font-semibold text-text-secondary"
                 >
                   {header.isPlaceholder
                     ? null
@@ -56,7 +56,7 @@ export function DataTable<T>({ columns, data, getRowKey }: DataTableProps<T>) {
               className="border-b border-divider hover:bg-surface-variant transition-colors last:border-b-0"
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-6 py-4 text-sm text-text-primary">
+                <td key={cell.id} className="px-4 py-3 sm:px-6 sm:py-4 text-sm text-text-primary">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
