@@ -31,7 +31,7 @@ export function getTaskStatusColor(status: TaskStatus) {
       border: "border-text-disabled/30",
     },
   };
-  return colors[status];
+  return colors[status] ?? fallbackColor;
 }
 
 /**
@@ -60,7 +60,7 @@ export function getTaskPriorityColor(priority: TaskPriority) {
       border: "border-success/30",
     },
   };
-  return colors[priority];
+  return colors[priority] ?? fallbackColor;
 }
 
 /**
@@ -84,7 +84,7 @@ export function getReportStatusColor(status: ReportStatus) {
       border: "border-success/30",
     },
   };
-  return colors[status];
+  return colors[status] ?? fallbackColor;
 }
 
 /**
@@ -113,7 +113,7 @@ export function getReportSeverityColor(severity: ReportSeverity) {
       border: "border-error/30",
     },
   };
-  return colors[severity];
+  return colors[severity] ?? fallbackColor;
 }
 
 /**
@@ -137,12 +137,14 @@ export function getUnitStatusColor(status: UnitStatus) {
       border: "border-text-disabled/30",
     },
   };
-  return colors[status];
+  return colors[status] ?? fallbackColor;
 }
 
 /**
  * Get background and text color classes for a flight status
  */
+const fallbackColor = { bg: "bg-text-disabled/15", text: "text-text-disabled", border: "border-text-disabled/30" };
+
 export function getFlightStatusColor(status: FlightStatus) {
   const colors: Record<FlightStatus, { bg: string; text: string; border: string }> = {
     [FlightStatus.SCHEDULED]: {
@@ -150,23 +152,28 @@ export function getFlightStatusColor(status: FlightStatus) {
       text: "text-info",
       border: "border-info/30",
     },
-    [FlightStatus.ARRIVED]: {
+    [FlightStatus.ACTIVE]: {
       bg: "bg-primary-200/15",
       text: "text-primary-200",
       border: "border-primary-200/30",
     },
-    [FlightStatus.DEPARTED]: {
+    [FlightStatus.ARRIVED]: {
       bg: "bg-success/15",
       text: "text-success",
       border: "border-success/30",
     },
-    [FlightStatus.CANCELLED]: {
+    [FlightStatus.DEPARTED]: {
       bg: "bg-text-disabled/15",
       text: "text-text-disabled",
       border: "border-text-disabled/30",
     },
+    [FlightStatus.CANCELLED]: {
+      bg: "bg-error/15",
+      text: "text-error",
+      border: "border-error/30",
+    },
   };
-  return colors[status];
+  return colors[status] ?? fallbackColor;
 }
 
 /**
