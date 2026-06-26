@@ -39,7 +39,7 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="w-64 bg-surface border-r border-border h-screen flex flex-col overflow-y-auto">
+    <aside className="w-64 bg-surface border-e border-border h-screen flex flex-col overflow-y-auto">
       {/* Header */}
       <div className="p-6 border-b border-divider">
         <h2 className="text-xl font-bold text-text-primary">{t("app.name")}</h2>

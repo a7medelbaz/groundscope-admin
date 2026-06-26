@@ -4,7 +4,8 @@
       "Read(//c/1_Flutter_Projects/GroundScope_Graduation_project/ground_scope/docs/**)",
       "PowerShell(Invoke-WebRequest -Uri \"http://localhost:3000/en\" -TimeoutSec 5 -UseBasicParsing 2>&1)",
       "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
-      "PowerShell(Stop-Process -Force)"
+      "PowerShell(Stop-Process -Force)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:3000/en\" -TimeoutSec 15 -UseBasicParsing 2>&1)"
     ]
   }
 }
