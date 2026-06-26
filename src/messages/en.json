@@ -98,5 +98,13 @@
     "openReports": "Open Reports",
     "recentFlights": "Recent Flights",
     "lastUpdated": "Last updated"
+  },
+  "serviceType": {
+    "name": "Service Type Name",
+    "description": "Description",
+    "duration": "Default Duration",
+    "icon": "Icon",
+    "created": "Created",
+    "actions": "Actions"
   }
 }
