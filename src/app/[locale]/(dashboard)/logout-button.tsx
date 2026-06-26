@@ -2,7 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { signOut } from "@/lib/queries/auth";
+import { LogOut } from "lucide-react";
+import { signOut } from "@/lib/actions/auth";
 import { useState } from "react";
 
 export function LogoutButton() {
@@ -26,9 +27,12 @@ export function LogoutButton() {
     <button
       onClick={handleLogout}
       disabled={isLoading}
-      className="px-4 py-2 bg-error/10 hover:bg-error/20 text-error font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      className="w-full flex items-center gap-3 px-3 py-2.5 text-error font-medium rounded-control transition-colors hover:bg-error/10 disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      {isLoading ? t("common.loading") : t("common.logout")}
+      <LogOut className="w-[18px] h-[18px] flex-shrink-0" strokeWidth={2} />
+      <span className="text-sm">
+        {isLoading ? t("common.loading") : t("common.logout")}
+      </span>
     </button>
   );
 }

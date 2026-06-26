@@ -18,7 +18,7 @@ export async function getCurrentUser(): Promise<User | null> {
     .from("users")
     .select("*")
     .eq("auth_id", session.user.id)
-    .single();
+    .single() as { data: User | null; error: any };
 
   if (error) {
     console.error("Error fetching user:", error);

@@ -60,6 +60,19 @@ const config: Config = {
       borderColor: {
         DEFAULT: "var(--border)",
       },
+      boxShadow: {
+        card: "var(--shadow-card)",
+        raised: "var(--shadow-raised)",
+        overlay: "var(--shadow-overlay)",
+      },
+      borderRadius: {
+        card: "var(--radius-card)",
+        chip: "var(--radius-chip)",
+        control: "var(--radius-control)",
+      },
+      backgroundImage: {
+        "gradient-brand": "var(--gradient-brand)",
+      },
     },
   },
   plugins: [],
