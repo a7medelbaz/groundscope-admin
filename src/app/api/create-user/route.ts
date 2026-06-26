@@ -1,14 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
 
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-
-if (!serviceRoleKey || !supabaseUrl) {
-  throw new Error("Missing Supabase service role key or URL");
-}
-
-const adminClient = createClient(supabaseUrl, serviceRoleKey);
-
 interface CreateUserRequest {
   email: string;
   password: string;
@@ -20,6 +11,17 @@ interface CreateUserRequest {
 
 export async function POST(request: Request) {
   try {
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+
+    if (!serviceRoleKey || !supabaseUrl) {
+      return Response.json(
+        { error: "Missing Supabase service role key or URL" },
+        { status: 500 }
+      );
+    }
+
+    const adminClient = createClient(supabaseUrl, serviceRoleKey);
     const body: CreateUserRequest = await request.json();
 
     const { error: authError, data: authData } = await (adminClient.auth.admin as any).createUser({

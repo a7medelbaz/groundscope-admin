@@ -1,14 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 
-const apiKey = process.env.AVIATIONSTACK_API_KEY;
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-if (!apiKey || !supabaseUrl || !anonKey) {
-  throw new Error("Missing required environment variables");
-}
-
-const supabase = createClient(supabaseUrl, anonKey);
+const supabase = supabaseUrl && anonKey ? createClient(supabaseUrl, anonKey) : null;
 
 interface AviationStackFlight {
   flight_iataNumber?: string;
@@ -25,8 +20,14 @@ interface AviationStackFlight {
 
 export async function POST() {
   try {
+    const apiKey = process.env.AVIATIONSTACK_API_KEY;
+
+    if (!apiKey || !supabase) {
+      return Response.json({ error: "Missing required environment variables" }, { status: 500 });
+    }
+
     const params = new URLSearchParams();
-    params.append("access_key", apiKey!);
+    params.append("access_key", apiKey);
     params.append("iataCode", "CAI");
     params.append("limit", "100");
 

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Clock, AlertCircle, X } from "lucide-react";
+import { CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import { SlideOverSheet } from "@/components/ui/slide-over-sheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,6 @@ interface TaskDetailSheetProps {
 
 export function TaskDetailSheet({ task, open, onOpenChange }: TaskDetailSheetProps) {
   const [checklists, setChecklists] = useState<TaskChecklist[]>([]);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     if (task) {
