@@ -212,8 +212,8 @@ export async function getUnitPerformance(
   const result: UnitPerformanceRow[] = [];
   performanceMap.forEach((perf) => {
     if (perf.tasks_assigned > 0) {
-      perf.avg_start_delay_minutes = Math.round(perf.avg_start_delay_minutes / perf.tasks_assigned);
-      perf.avg_duration_minutes = Math.round(perf.avg_duration_minutes / perf.tasks_assigned);
+      perf.avg_start_delay_minutes = Math.round((perf.avg_start_delay_minutes ?? 0) / perf.tasks_assigned);
+      perf.avg_duration_minutes = Math.round((perf.avg_duration_minutes ?? 0) / perf.tasks_assigned);
     }
     result.push(perf);
   });

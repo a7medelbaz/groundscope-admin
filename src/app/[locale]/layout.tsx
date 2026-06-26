@@ -28,8 +28,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
 
   // Load messages directly — avoids the next-intl config file discovery requirement
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let messages: Record<string, any> = {};
+  let messages: Record<string, unknown> = {};
   try {
     messages = (await import(`@/messages/${locale}.json`)).default;
   } catch {
