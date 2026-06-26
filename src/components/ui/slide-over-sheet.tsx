@@ -61,7 +61,7 @@ export function SlideOverSheet({
             )}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-divider">
+            <div className="flex items-center justify-between px-4 py-4 sm:px-6 border-b border-divider">
               <div className="flex-1">
                 <h2 className="text-lg font-extrabold text-text-primary">{title}</h2>
                 {description && (
@@ -77,7 +77,7 @@ export function SlideOverSheet({
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto px-6 py-4">{children}</div>
+            <div className="flex-1 overflow-y-auto px-4 py-4 sm:px-6">{children}</div>
           </motion.div>
         </>
       )}

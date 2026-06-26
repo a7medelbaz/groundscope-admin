@@ -18,9 +18,9 @@ export function ReportDetailBody({ report }: ReportDetailBodyProps) {
   const resolvedBy = report.resolved_user as any;
 
   return (
-    <div className="grid grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Left: Description + Photo */}
-      <div className="col-span-2 space-y-6">
+      <div className="lg:col-span-2 space-y-6">
         {/* Description */}
         <Card>
           <CardBody className="space-y-3">

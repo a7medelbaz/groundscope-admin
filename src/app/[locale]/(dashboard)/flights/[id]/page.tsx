@@ -97,7 +97,7 @@ export default function FlightDetailPage() {
         {activeTab === "info" && (
           <Card className="max-w-2xl">
             <CardBody className="p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-text-hint uppercase tracking-wide mb-1">Status</p>
                   <Badge tone={tone.text} toneBg={tone.bg} toneBorder={tone.border}>
@@ -112,7 +112,7 @@ export default function FlightDetailPage() {
 
               <div className="border-t border-divider pt-4">
                 <p className="text-xs text-text-hint uppercase tracking-wide mb-2">Scheduled Times</p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm text-text-secondary">Arrival</p>
                     <p className="font-semibold">
