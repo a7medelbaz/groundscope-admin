@@ -98,5 +98,13 @@
     "openReports": "التقارير المفتوحة",
     "recentFlights": "الرحلات الأخيرة",
     "lastUpdated": "آخر تحديث"
+  },
+  "serviceType": {
+    "name": "اسم نوع الخدمة",
+    "description": "الوصف",
+    "duration": "المدة الافتراضية",
+    "icon": "الرمز",
+    "created": "تم الإنشاء",
+    "actions": "الإجراءات"
   }
 }
