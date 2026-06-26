@@ -37,10 +37,10 @@ export function ReportDetailView({ report: initialReport }: ReportDetailViewProp
       await acknowledgeReport(report.id, user.id);
       setReport((prev) => ({
         ...prev,
-        status: "acknowledged",
+        status: "acknowledged" as const,
         acknowledged_by: user.id,
         acknowledged_at: new Date().toISOString(),
-      }));
+      } as ReportWithJoins));
       setConfirmAction(null);
     } catch (error) {
       console.error("Failed to acknowledge:", error);
@@ -56,10 +56,10 @@ export function ReportDetailView({ report: initialReport }: ReportDetailViewProp
       await resolveReport(report.id, user.id);
       setReport((prev) => ({
         ...prev,
-        status: "resolved",
+        status: "resolved" as const,
         resolved_by: user.id,
         resolved_at: new Date().toISOString(),
-      }));
+      } as ReportWithJoins));
       setConfirmAction(null);
     } catch (error) {
       console.error("Failed to resolve:", error);
@@ -75,12 +75,12 @@ export function ReportDetailView({ report: initialReport }: ReportDetailViewProp
       await reopenReport(report.id);
       setReport((prev) => ({
         ...prev,
-        status: "open",
-        acknowledged_by: null,
-        acknowledged_at: null,
-        resolved_by: null,
-        resolved_at: null,
-      }));
+        status: "open" as const,
+        acknowledged_by: undefined,
+        acknowledged_at: undefined,
+        resolved_by: undefined,
+        resolved_at: undefined,
+      } as ReportWithJoins));
       setConfirmAction(null);
     } catch (error) {
       console.error("Failed to reopen:", error);
