@@ -44,7 +44,7 @@ export function KanbanBoard({ tasks, onTasksUpdate }: KanbanBoardProps) {
   return (
     <>
       <TaskDetailSheet task={selectedTask} open={isDetailOpen} onOpenChange={setIsDetailOpen} />
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible pb-2 -mx-4 px-4 md:mx-0 md:px-0">
       {columns.map((column) => {
         const Icon = column.icon;
         const columnTasks = tasks.filter((t) => t.status === column.id);
@@ -55,7 +55,7 @@ export function KanbanBoard({ tasks, onTasksUpdate }: KanbanBoardProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="bg-surface-variant rounded-card p-4 border border-divider min-h-96"
+            className="bg-surface-variant rounded-card p-4 border border-divider min-h-96 w-72 flex-shrink-0 md:w-auto"
           >
             {/* Column Header */}
             <div className="flex items-center gap-2 mb-4">
