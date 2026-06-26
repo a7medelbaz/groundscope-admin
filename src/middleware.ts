@@ -1,5 +1,5 @@
 import createMiddleware from "next-intl/middleware";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 const intlMiddleware = createMiddleware({
   locales: ["en", "ar"],
@@ -15,9 +15,6 @@ export function middleware(request: NextRequest) {
     return intlMiddleware(request);
   }
 
-  // 🔖 //TODO: Add session check for protected (dashboard) routes
-  // For now, let intl middleware handle routing
-  // After Phase 2, add: if (pathname.includes("/(dashboard)")) { check session }
   return intlMiddleware(request);
 }
 
