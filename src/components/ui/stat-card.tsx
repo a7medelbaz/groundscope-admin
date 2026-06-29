@@ -56,17 +56,17 @@ export function StatCard({ value, label, icon: Icon, tone = "primary", delay = 0
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
       className={cn(
-        "relative overflow-hidden bg-surface border border-border rounded-card shadow-card p-6 transition-shadow duration-200 hover:shadow-raised",
+        "relative overflow-hidden bg-surface border border-border rounded-card shadow-card p-6 transition-all duration-200 hover:shadow-raised hover:border-primary-200/50",
         "before:absolute before:inset-y-0 before:start-0 before:w-1 before:content-['']",
         styles.accent
       )}
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-wide text-text-hint mb-2">
+          <p className="text-xs font-semibold uppercase tracking-widest text-text-hint mb-3">
             {label}
           </p>
-          <p className="text-3xl font-extrabold text-text-primary tabular-nums">
+          <p className="text-4xl font-extrabold text-text-primary tabular-nums font-mono-data">
             {displayValue.toLocaleString()}
           </p>
         </div>
