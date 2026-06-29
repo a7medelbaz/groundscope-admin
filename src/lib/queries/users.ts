@@ -55,12 +55,16 @@ export async function updateUser(
 export async function deleteUser(id: string): Promise<void> {
   const supabase = (await createServerSupabaseClient()) as any;
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("users")
     .update({ is_active: false })
-    .eq("id", id);
+    .eq("id", id)
+    .select();
 
   if (error) throw error;
+  if (!data || data.length === 0) {
+    throw new Error("User not found or RLS prevented update");
+  }
 }
 
 export async function createUserViaBrowser(

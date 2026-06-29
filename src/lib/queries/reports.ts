@@ -1,6 +1,7 @@
 "use server";
 
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/queries/auth";
 import { Report, ReportStatus, ReportSeverity } from "@/lib/types/database";
 
 export interface ReportWithJoins extends Report {
@@ -107,17 +108,20 @@ export async function getReportById(id: string): Promise<ReportWithJoins | null>
   return data as ReportWithJoins;
 }
 
-export async function acknowledgeReport(
-  reportId: string,
-  acknowledgedById: string
-): Promise<Report> {
+export async function acknowledgeReport(reportId: string): Promise<Report> {
+  // Derive the acknowledger from the authenticated session. `acknowledged_by`
+  // is a FK to public.users(id) — NOT auth.users(id) — so we must use the app
+  // user id, never a client-supplied or auth id.
+  const admin = await getCurrentUser();
+  if (!admin) throw new Error("Not authenticated — cannot acknowledge report.");
+
   const supabase = (await createServerSupabaseClient()) as any;
 
   const { data, error } = await supabase
     .from("reports")
     .update({
       status: ReportStatus.ACKNOWLEDGED,
-      acknowledged_by: acknowledgedById,
+      acknowledged_by: admin.id,
       acknowledged_at: new Date().toISOString(),
     })
     .eq("id", reportId)
@@ -132,17 +136,17 @@ export async function acknowledgeReport(
   return data as Report;
 }
 
-export async function resolveReport(
-  reportId: string,
-  resolvedById: string
-): Promise<Report> {
+export async function resolveReport(reportId: string): Promise<Report> {
+  const admin = await getCurrentUser();
+  if (!admin) throw new Error("Not authenticated — cannot resolve report.");
+
   const supabase = (await createServerSupabaseClient()) as any;
 
   const { data, error } = await supabase
     .from("reports")
     .update({
       status: ReportStatus.RESOLVED,
-      resolved_by: resolvedById,
+      resolved_by: admin.id,
       resolved_at: new Date().toISOString(),
     })
     .eq("id", reportId)

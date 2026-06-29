@@ -74,10 +74,14 @@ export async function updateStand(
 export async function deleteStand(id: string): Promise<void> {
   const supabase = (await createServerSupabaseClient()) as any;
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("stands")
     .update({ is_active: false })
-    .eq("id", id);
+    .eq("id", id)
+    .select();
 
   if (error) throw error;
+  if (!data || data.length === 0) {
+    throw new Error("Stand not found or RLS prevented update");
+  }
 }

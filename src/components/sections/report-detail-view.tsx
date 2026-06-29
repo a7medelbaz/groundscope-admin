@@ -12,7 +12,6 @@ import {
   resolveReport,
   reopenReport,
 } from "@/lib/queries/reports";
-import { useSession } from "@/lib/hooks/useSession";
 import { useTranslations } from "next-intl";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -23,7 +22,6 @@ interface ReportDetailViewProps {
 
 export function ReportDetailView({ report: initialReport }: ReportDetailViewProps) {
   const t = useTranslations("reports");
-  const { user } = useSession();
   const [report, setReport] = useState(initialReport);
   const [isLoading, setIsLoading] = useState(false);
   const [confirmAction, setConfirmAction] = useState<
@@ -31,15 +29,14 @@ export function ReportDetailView({ report: initialReport }: ReportDetailViewProp
   >(null);
 
   const handleAcknowledge = async () => {
-    if (!user) return;
     try {
       setIsLoading(true);
-      await acknowledgeReport(report.id, user.id);
+      const updated = await acknowledgeReport(report.id);
       setReport((prev) => ({
         ...prev,
-        status: "acknowledged" as const,
-        acknowledged_by: user.id,
-        acknowledged_at: new Date().toISOString(),
+        status: updated.status,
+        acknowledged_by: updated.acknowledged_by,
+        acknowledged_at: updated.acknowledged_at,
       } as ReportWithJoins));
       setConfirmAction(null);
     } catch (error) {
@@ -50,15 +47,14 @@ export function ReportDetailView({ report: initialReport }: ReportDetailViewProp
   };
 
   const handleResolve = async () => {
-    if (!user) return;
     try {
       setIsLoading(true);
-      await resolveReport(report.id, user.id);
+      const updated = await resolveReport(report.id);
       setReport((prev) => ({
         ...prev,
-        status: "resolved" as const,
-        resolved_by: user.id,
-        resolved_at: new Date().toISOString(),
+        status: updated.status,
+        resolved_by: updated.resolved_by,
+        resolved_at: updated.resolved_at,
       } as ReportWithJoins));
       setConfirmAction(null);
     } catch (error) {
@@ -69,7 +65,6 @@ export function ReportDetailView({ report: initialReport }: ReportDetailViewProp
   };
 
   const handleReopen = async () => {
-    if (!user) return;
     try {
       setIsLoading(true);
       await reopenReport(report.id);

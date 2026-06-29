@@ -22,6 +22,7 @@ export function ReportDetailDialogs({
   onCancel,
 }: ReportDetailDialogsProps) {
   const t = useTranslations("reports");
+  const tCommon = useTranslations("common");
 
   return (
     <>
@@ -30,7 +31,7 @@ export function ReportDetailDialogs({
         title={t("confirmAcknowledge")}
         description={t("confirmAcknowledgeDesc")}
         confirmText={t("acknowledge")}
-        cancelText={t("common.cancel")}
+        cancelText={tCommon("cancel")}
         isLoading={isLoading}
         onConfirm={onConfirmAcknowledge}
         onCancel={onCancel}
@@ -41,7 +42,7 @@ export function ReportDetailDialogs({
         title={t("confirmResolve")}
         description={t("confirmResolveDesc")}
         confirmText={t("resolve")}
-        cancelText={t("common.cancel")}
+        cancelText={tCommon("cancel")}
         isLoading={isLoading}
         onConfirm={onConfirmResolve}
         onCancel={onCancel}
@@ -52,7 +53,7 @@ export function ReportDetailDialogs({
         title={t("confirmReopen")}
         description={t("confirmReopenDesc")}
         confirmText={t("reopen")}
-        cancelText={t("common.cancel")}
+        cancelText={tCommon("cancel")}
         isLoading={isLoading}
         onConfirm={onConfirmReopen}
         onCancel={onCancel}

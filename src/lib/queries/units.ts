@@ -75,7 +75,14 @@ export async function updateUnit(
 export async function deleteUnit(id: string): Promise<void> {
   const supabase = (await createServerSupabaseClient()) as any;
 
-  const { error } = await supabase.from("units").delete().eq("id", id);
+  const { data, error } = await supabase
+    .from("units")
+    .delete()
+    .eq("id", id)
+    .select();
 
   if (error) throw error;
+  if (!data || data.length === 0) {
+    throw new Error("Unit not found or RLS prevented delete");
+  }
 }

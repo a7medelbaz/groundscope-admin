@@ -78,12 +78,16 @@ export async function updateUnitMember(
 export async function deleteUnitMember(id: string): Promise<void> {
   const supabase = (await createServerSupabaseClient()) as any;
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("unit_members")
     .update({ is_active: false })
-    .eq("id", id);
+    .eq("id", id)
+    .select();
 
   if (error) throw error;
+  if (!data || data.length === 0) {
+    throw new Error("Unit member not found or RLS prevented update");
+  }
 }
 
 export async function uploadMemberPhoto(
