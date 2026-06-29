@@ -39,15 +39,15 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-6 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-control bg-gradient-brand flex items-center justify-center shadow-card">
+      <div className="p-4 flex items-center gap-3 border-b border-border">
+        <div className="w-10 h-10 rounded-control bg-gradient-brand flex items-center justify-center shadow-glow">
           <span className="text-white font-extrabold text-lg">G</span>
         </div>
         <div className="min-w-0">
-          <h2 className="text-base font-extrabold text-text-primary leading-tight truncate">
+          <h2 className="text-sm font-extrabold text-text-primary leading-tight truncate">
             {t("app.name")}
           </h2>
-          <p className="text-[11px] text-text-hint leading-tight truncate">
+          <p className="text-[10px] text-text-hint leading-tight truncate">
             {t("app.tagline")}
           </p>
         </div>

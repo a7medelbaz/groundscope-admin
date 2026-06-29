@@ -32,11 +32,11 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     <div
       ref={ref}
       className={cn(
-        "relative overflow-hidden bg-surface border border-border rounded-card shadow-card transition-shadow duration-200",
+        "relative overflow-hidden bg-surface border border-border rounded-card shadow-card transition-all duration-200",
         accent !== "none" &&
           "before:absolute before:inset-y-0 before:start-0 before:w-1 before:content-['']",
         accent !== "none" && accentClasses[accent],
-        interactive && "hover:shadow-raised",
+        interactive && "hover:shadow-raised hover:border-primary-200/40",
         className
       )}
       {...props}
