@@ -27,6 +27,7 @@ const config: Config = {
         warning: "var(--warning)",
         error: "var(--error)",
         info: "var(--info)",
+        "accent-cyan": "var(--accent-cyan)",
 
         /* Neutral */
         grey: {
@@ -64,6 +65,10 @@ const config: Config = {
         card: "var(--shadow-card)",
         raised: "var(--shadow-raised)",
         overlay: "var(--shadow-overlay)",
+        glow: "var(--glow-primary)",
+      },
+      animation: {
+        "pulse-soft": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       borderRadius: {
         card: "var(--radius-card)",
